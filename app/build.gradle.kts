@@ -265,15 +265,15 @@ android {
             buildConfigField("String", "SPONSOR_NAMES", buildConfigString(sponsorNames))
         }
         // Optimized build for testing on real TVs: release settings (R8, resource shrinking,
-        // baseline profile) but signed with the debug keystore and installed as
-        // com.nuviobeta.tv so it upgrades the debug install in place, alongside stock Nuvio.
+        // baseline profile) and signed with your private release keystore, installed as
+        // com.nuviobeta.tv alongside stock Nuvio; future Beta builds will update it using the same private key.
         create("beta") {
             initWith(buildTypes.getByName("release"))
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("release")
             isDebuggable = false
             buildConfigField("String", "SENTRY_ENVIRONMENT", buildConfigString("beta"))
             buildConfigField("boolean", "IN_APP_UPDATES_ALLOWED", "true")
-            buildConfigField("String", "GITHUB_OWNER", buildConfigString("Laking22"))
+            buildConfigField("String", "GITHUB_OWNER", buildConfigString("Thairon38"))
             buildConfigField("String", "GITHUB_REPO", buildConfigString("Nuvio-Echo"))
             matchingFallbacks += "release"
         }
