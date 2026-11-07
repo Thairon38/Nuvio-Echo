@@ -1,3 +1,4 @@
+
 package com.nuvio.tv.core.calendar
 
 import android.content.Context
@@ -29,7 +30,9 @@ internal class CalendarStore(context: Context) {
     }
 
     fun writeShows(profileId: Int, shows: Collection<CalendarShow>) {
-        write(showsFile(profileId), JSONArray().apply { shows.forEach { put(it.toJson()) } })
+        write(showsFile(profileId), JSONArray().apply {
+            shows.forEach { put(it.toJson()) }
+        })
     }
 
     fun readReminders(profileId: Int): Map<String, CalendarReminder> {
@@ -65,7 +68,9 @@ internal class CalendarStore(context: Context) {
     private fun read(file: File): JSONArray? {
         if (!file.isFile) return null
         return runCatching { JSONArray(file.readText()) }
-            .onFailure { Log.w(TAG, "unreadable ${file.name}: ${it.javaClass.simpleName}") }
+            .onFailure {
+                Log.w(TAG, "unreadable ${file.name}: ${it.javaClass.simpleName}")
+            }
             .getOrNull()
     }
 
@@ -79,7 +84,9 @@ internal class CalendarStore(context: Context) {
                 file.delete()
                 tmp.renameTo(file)
             }
-        }.onFailure { Log.w(TAG, "couldn't write ${file.name}: ${it.javaClass.simpleName}") }
+        }.onFailure {
+            Log.w(TAG, "couldn't write ${file.name}: ${it.javaClass.simpleName}")
+        }
     }
 
     private fun CalendarShow.toJson() = JSONObject().apply {
@@ -103,7 +110,9 @@ internal class CalendarStore(context: Context) {
         title = optString("title"),
         poster = str("poster"),
         backdrop = str("backdrop"),
-        status = runCatching { CalendarStatus.valueOf(optString("status")) }.getOrDefault(CalendarStatus.UNKNOWN),
+        status = runCatching {
+            CalendarStatus.valueOf(optString("status"))
+        }.getOrDefault(CalendarStatus.UNKNOWN),
         next = optJSONObject("next")?.toEpisode(),
         last = optJSONObject("last")?.toEpisode(),
         network = str("network"),
@@ -123,6 +132,7 @@ internal class CalendarStore(context: Context) {
         runtimeMinutes?.let { put("runtime", it) }
         still?.let { put("still", it) }
         type?.let { put("type", it) }
+        put("dateSource", dateSource.name)
     }
 
     private fun JSONObject.toEpisode() = CalendarEpisode(
@@ -133,12 +143,22 @@ internal class CalendarStore(context: Context) {
         overview = str("overview"),
         runtimeMinutes = if (has("runtime")) optInt("runtime") else null,
         still = str("still"),
-        type = str("type")
+        type = str("type"),
+        dateSource = runCatching {
+            CalendarDateSource.valueOf(optString("dateSource"))
+        }.getOrDefault(CalendarDateSource.UNKNOWN)
     )
 
-    private fun JSONObject.str(name: String): String? = if (has(name) && !isNull(name)) optString(name).takeIf { it.isNotBlank() } else null
+    private fun JSONObject.str(name: String): String? =
+        if (has(name) && !isNull(name)) {
+            optString(name).takeIf { it.isNotBlank() }
+        } else {
+            null
+        }
 
-    private fun date(raw: String?): LocalDate? = raw?.takeIf { it.isNotBlank() }?.let { runCatching { LocalDate.parse(it) }.getOrNull() }
+    private fun date(raw: String?): LocalDate? =
+        raw?.takeIf { it.isNotBlank() }
+            ?.let { runCatching { LocalDate.parse(it) }.getOrNull() }
 
     private companion object {
         const val TAG = "Calendar"

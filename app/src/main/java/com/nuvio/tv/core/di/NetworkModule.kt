@@ -26,6 +26,7 @@ import com.nuvio.tv.data.remote.api.SeriesGraphApi
 import com.nuvio.tv.data.remote.api.TmdbApi
 import com.nuvio.tv.data.remote.api.TorboxApi
 import com.nuvio.tv.data.remote.api.UniqueContributionsApi
+import com.nuvio.tv.data.remote.api.TvmazeApi
 import com.nuvio.tv.data.simkl.OkHttpSimklEngine
 import com.nuvio.tv.data.simkl.SimklApiClient
 import com.nuvio.tv.data.simkl.SimklApiConfiguration
@@ -496,6 +497,28 @@ object NetworkModule {
     @Singleton
     fun provideTmdbApi(@Named("tmdb") retrofit: Retrofit): TmdbApi =
         retrofit.create(TmdbApi::class.java)
+
+    // --- TVmaze API (Spanish TV and streaming schedules) ---
+
+    @Provides
+    @Singleton
+    @Named("tvmaze")
+    fun provideTvmazeRetrofit(
+        okHttpClient: OkHttpClient,
+        moshi: Moshi
+    ): Retrofit =
+        Retrofit.Builder()
+            .baseUrl("https://api.tvmaze.com/")
+            .client(okHttpClient)
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .build()
+
+    @Provides
+    @Singleton
+    fun provideTvmazeApi(
+        @Named("tvmaze") retrofit: Retrofit
+    ): TvmazeApi =
+        retrofit.create(TvmazeApi::class.java)
 
     @Provides
     @Singleton

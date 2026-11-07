@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nav_calendar">Calendario</string>
+
+    <string name="calendar_title">Calendario</string>
+    <string name="calendar_summary">%1$d con fecha · %2$d seguidas</string>
+    <string name="calendar_view_list">Lista</string>
+    <string name="calendar_view_month">Mes</string>
+    <string name="calendar_loading">Comprobando las series que sigues…</string>
+    <string name="calendar_empty">Todavía no hay nada aquí. Las series de tu biblioteca y las que estás viendo aparecerán con su próximo episodio.</string>
+
+    <string name="calendar_group_today">Hoy</string>
+    <string name="calendar_group_week">Esta semana</string>
+    <string name="calendar_group_later">Más adelante</string>
+    <string name="calendar_group_no_date">Sin fecha anunciada</string>
+
+    <string name="calendar_today">Hoy</string>
+    <string name="calendar_tomorrow">Mañana</string>
+    <plurals name="calendar_in_days">
+        <item quantity="one">dentro de %d día</item>
+        <item quantity="other">dentro de %d días</item>
+    </plurals>
+    <plurals name="calendar_in_weeks">
+        <item quantity="one">dentro de %d semana</item>
+        <item quantity="other">dentro de %d semanas</item>
+    </plurals>
+    <plurals name="calendar_in_months">
+        <item quantity="one">dentro de %d mes</item>
+        <item quantity="other">dentro de %d meses</item>
+    </plurals>
+    <string name="calendar_episode_code">T%1$d E%2$d</string>
+    <string name="calendar_last_episode">Último episodio %s</string>
+    <string name="calendar_no_date">Sin fecha todavía</string>
+    <string name="calendar_minutes">%d min</string>
+    <plurals name="calendar_seasons">
+        <item quantity="one">%d temporada</item>
+        <item quantity="other">%d temporadas</item>
+    </plurals>
+    <plurals name="calendar_day_episodes">
+        <item quantity="one">%d episodio</item>
+        <item quantity="other">%d episodios</item>
+    </plurals>
+    <string name="calendar_nothing_this_day">No hay episodios este día</string>
+
+    <string name="calendar_marker_series_premiere">Estreno de la serie</string>
+    <string name="calendar_marker_season_premiere">Estreno de temporada</string>
+    <string name="calendar_marker_finale">Final de temporada</string>
+    <string name="calendar_marker_mid_season">Final de mitad de temporada</string>
+
+    <string name="calendar_open_show">Abrir serie</string>
+    <string name="calendar_remind_me">Recordármelo</string>
+    <string name="calendar_reminder_on">Recordatorio activado</string>
+    <string name="calendar_turn_off_reminder">Desactivar recordatorio</string>
+    <string name="calendar_reminder_hint">Aparecerá en Inicio el día de su estreno.</string>
+
+    <string name="calendar_due_title">Hay nuevos episodios disponibles</string>
+    <string name="calendar_due_subtitle">De las series para las que has activado recordatorios</string>
+    <string name="calendar_due_today">Disponible hoy</string>
+    <string name="calendar_due_since">Disponible desde %s</string>
+    <string name="calendar_due_dismiss">Descartar</string>
+
+    <string name="calendar_source_spain_tv">España · TV</string>
+    <string name="calendar_source_spain_streaming">España · Streaming</string>
+    <string name="calendar_source_general">Internacional</string>
+    <string name="calendar_source_addon_unverified">Fecha no verificada</string>
+    <string name="calendar_source_unknown">Procedencia desconocida</string>
+
+    <string name="beta_poster_colour_mesh_title">Degradado de color detrás de los detalles</string>
+    <string name="beta_poster_colour_mesh_subtitle">Aplica colores al panel de detalles de Búsqueda y Géneros.</string>
+</resources>

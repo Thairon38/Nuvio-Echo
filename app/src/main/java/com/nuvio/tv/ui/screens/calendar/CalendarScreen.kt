@@ -81,6 +81,7 @@ import coil3.request.crossfade
 import com.nuvio.tv.LocalContentFocusRequester
 import com.nuvio.tv.R
 import com.nuvio.tv.core.calendar.CalendarEpisode
+import com.nuvio.tv.core.calendar.CalendarDateSource
 import com.nuvio.tv.core.calendar.CalendarMarker
 import com.nuvio.tv.core.calendar.CalendarShow
 import com.nuvio.tv.ui.components.NuvioDialog
@@ -892,6 +893,14 @@ private fun FeaturePanel(entry: CalendarEntry?, locale: Locale) {
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
+            Spacer(modifier = Modifier.height(2.dp))
+            Text(
+                text = dateSourceLabel(episode.dateSource),
+                style = MaterialTheme.typography.labelSmall,
+                color = colors.TextTertiary,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
         }
         val support = supportLine(entry.show, episode.takeIf { entry.date != null })
         if (support.isNotEmpty()) {
@@ -1144,7 +1153,7 @@ private fun DayDialog(
                     iconTint = ReminderGreen,
                     title = entry.show.title,
                     description = ep?.let {
-                        listOfNotNull(stringResource(R.string.calendar_episode_code, it.season, it.episode), it.name)
+                        listOfNotNull(stringResource(R.string.calendar_episode_code, it.season, it.episode), it.name, dateSourceLabel(it.dateSource))
                             .joinToString(" · ")
                     },
                     modifier = if (entry == entries.first()) Modifier.focusRequester(firstFocus) else Modifier,
@@ -1259,14 +1268,24 @@ private fun MarkerChip(marker: CalendarMarker, inverted: Boolean, large: Boolean
 
 /** "Thu 15 Oct · S2 E8 · HBO", or for a show without a date "Last episode S3 E10 · 12 Mar 2025". */
 @Composable
+private fun dateSourceLabel(source: CalendarDateSource): String = when (source) {
+    CalendarDateSource.SPAIN_TV -> stringResource(R.string.calendar_source_spain_tv)
+    CalendarDateSource.SPAIN_STREAMING -> stringResource(R.string.calendar_source_spain_streaming)
+    CalendarDateSource.GENERAL -> stringResource(R.string.calendar_source_general)
+    CalendarDateSource.ADDON_UNVERIFIED -> stringResource(R.string.calendar_source_addon_unverified)
+    CalendarDateSource.UNKNOWN -> stringResource(R.string.calendar_source_unknown)
+}
+
+@Composable
 private fun rowSubtitle(entry: CalendarEntry, locale: Locale): String {
     val ep = entry.episode
     val code = ep?.let { stringResource(R.string.calendar_episode_code, it.season, it.episode) }
+    val source = ep?.let { dateSourceLabel(it.dateSource) }
     return when {
-        entry.date != null -> listOfNotNull(dayLabel(entry.date, locale), code, entry.show.network).joinToString(" · ")
+        entry.date != null -> listOfNotNull(dayLabel(entry.date, locale), code, source, entry.show.network).joinToString(" · ")
         ep != null -> stringResource(
             R.string.calendar_last_episode,
-            listOfNotNull(code, ep.airDate?.let { fullDate(it, locale) }).joinToString(" · ")
+            listOfNotNull(code, ep.airDate?.let { fullDate(it, locale) }, source).joinToString(" · ")
         )
         else -> entry.show.network.orEmpty()
     }

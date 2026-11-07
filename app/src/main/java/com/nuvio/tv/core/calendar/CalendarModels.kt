@@ -1,3 +1,4 @@
+
 package com.nuvio.tv.core.calendar
 
 import androidx.compose.runtime.Immutable
@@ -28,21 +29,47 @@ enum class CalendarStatus {
     }
 }
 
+/** Origin of an episode date. */
+enum class CalendarDateSource {
+    /** Confirmed Spanish linear TV broadcast. */
+    SPAIN_TV,
+
+    /** Confirmed Spanish streaming/platform release. */
+    SPAIN_STREAMING,
+
+    /** General/international date, not confirmed for Spain. */
+    GENERAL,
+
+    /** Date supplied by an addon without verified country information. */
+    ADDON_UNVERIFIED,
+
+    /** Unknown origin, including entries from older cached data. */
+    UNKNOWN
+}
+
 /** What kind of episode it is, from TMDB's episode_type (and the episode number for premieres). */
-enum class CalendarMarker { NONE, SERIES_PREMIERE, SEASON_PREMIERE, FINALE, MID_SEASON }
+enum class CalendarMarker {
+    NONE,
+    SERIES_PREMIERE,
+    SEASON_PREMIERE,
+    FINALE,
+    MID_SEASON
+}
 
 @Immutable
 data class CalendarEpisode(
     val season: Int,
     val episode: Int,
     val name: String?,
-    /** The calendar date it airs (TMDB air_date, or a release date in the viewer's zone). */
+    /** The calendar date it airs or is released. */
     val airDate: LocalDate?,
     val overview: String?,
     val runtimeMinutes: Int?,
     /** A still of the episode, when the source has one. */
     val still: String?,
-    val type: String?
+    val type: String?,
+    /** Where the date comes from. Defaults to UNKNOWN for compatibility with existing callers and caches. */
+    val dateSource: CalendarDateSource = CalendarDateSource.UNKNOWN
 ) {
     val key: String get() = "S${season}E$episode"
 
@@ -80,7 +107,8 @@ data class CalendarShow(
     val fetchedAt: Long
 ) {
     /** The next episode, if it airs today or later. */
-    fun upcoming(today: LocalDate): CalendarEpisode? = next?.takeIf { ep -> ep.airDate?.let { !it.isBefore(today) } == true }
+    fun upcoming(today: LocalDate): CalendarEpisode? =
+        next?.takeIf { ep -> ep.airDate?.let { !it.isBefore(today) } == true }
 }
 
 /** "Remind me" for a show. It fires once per episode, for episodes that air after it was turned on. */

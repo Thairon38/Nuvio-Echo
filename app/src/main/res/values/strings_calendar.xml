@@ -60,4 +60,10 @@
     <string name="calendar_due_dismiss">Dismiss</string>
     <string name="beta_poster_colour_mesh_title">Colour mesh behind details</string>
     <string name="beta_poster_colour_mesh_subtitle">Colours the details panel in Search and Genres.</string>
+
+    <string name="calendar_source_spain_tv">Spain · TV</string>
+    <string name="calendar_source_spain_streaming">Spain · Streaming</string>
+    <string name="calendar_source_general">International</string>
+    <string name="calendar_source_addon_unverified">Unverified date</string>
+    <string name="calendar_source_unknown">Unknown source</string>
 </resources>
