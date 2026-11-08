@@ -106,8 +106,8 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         minSdk = 24
         targetSdk = 36
-        versionCode = 1069
-        versionName = "1.1.0-beta.6"
+        versionCode = 1070
+        versionName = "1.1.0-beta.7"
 
         buildConfigField("String", "PARENTAL_GUIDE_API_URL", "\"${localProperties.getProperty("PARENTAL_GUIDE_API_URL", "")}\"")
         buildConfigField("String", "INTRODB_API_URL", "\"${localProperties.getProperty("INTRODB_API_URL", "").ifBlank { "https://api.introdb.app/" }}\"")
@@ -368,10 +368,10 @@ android {
 androidComponents {
     onVariants(selector().withBuildType("debug")) { variant ->
         val isPlaystore = variant.productFlavors.any { it.second == "playstore" }
-        variant.applicationId.set(if (isPlaystore) "com.nuvio.appdebug" else "com.nuviobeta.tv")
+        variant.applicationId.set(if (isPlaystore) "com.nuvio.appdebug" else "com.thairon38.nuvio")
     }
     onVariants(selector().withBuildType("beta")) { variant ->
-        variant.applicationId.set("com.nuviobeta.tv")
+        variant.applicationId.set("com.thairon38.nuvio")
     }
 }
 
