@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="nd_rate_like">Me gusta</string>
+  <string name="nd_rate_love">¡Me encanta!</string>
+  <string name="nd_rate_dislike">No es para mí</string>
+  <string name="nd_rate_saved">%1$s ✓</string>
+  <string name="nd_watchlist_add">Añadir a la lista de seguimiento</string>
+  <string name="nd_watchlist_on">En tu lista de seguimiento</string>
+  <string name="nd_mark_watched">Marcar como visto</string>
+  <string name="nd_watched">Visto</string>
+  <string name="nd_play">Reproducir</string>
+  <string name="nd_menu_episodes">Episodios</string>
+  <string name="nd_menu_cast">Reparto y equipo</string>
+  <string name="nd_menu_trailer">Reproducir tráiler</string>
+  <string name="nd_menu_random">Episodio aleatorio</string>
+  <plurals name="nd_seasons_count">
+    <item quantity="one">%d temporada</item>
+    <item quantity="other">%d temporadas</item>
+  </plurals>
+  <plurals name="nd_seasons_title">
+    <item quantity="one">%d Temporada</item>
+    <item quantity="other">%d Temporadas</item>
+  </plurals>
+  <string name="nd_credit_cast">Reparto:</string>
+  <string name="nd_credit_creator">Creador:</string>
+  <string name="nd_credit_creators">Creadores:</string>
+  <string name="nd_credit_director">Dirección:</string>
+  <string name="nd_fact_genres">Géneros</string>
+  <string name="nd_fact_starring">Protagonistas</string>
+  <string name="nd_fact_created_by">Creado por</string>
+  <string name="nd_fact_director">Dirección</string>
+  <string name="nd_fact_seasons">Temporadas</string>
+  <string name="nd_fact_seasons_value">%1$s · %2$d episodios</string>
+  <string name="nd_fact_status">Estado</string>
+  <string name="nd_fact_runtime">Duración</string>
+  <string name="nd_fact_episode_length">Duración del episodio</string>
+  <string name="nd_fact_released">Estreno</string>
+  <string name="nd_fact_rated">Clasificación por edades</string>
+  <string name="nd_fact_language">Idioma original</string>
+  <string name="nd_fact_country">País de origen</string>
+  <string name="nd_row_similar">Títulos similares</string>
+  <string name="nd_row_reviews">Reseñas</string>
+  <string name="nd_menu_similar">Títulos similares</string>
+  <string name="nd_menu_reviews">Reseñas</string>
+  <string name="nd_panel_similar_like">Me gusta %1$s</string>
+  <plurals name="nd_panel_reviews_count">
+    <item quantity="one">%d reseña</item>
+    <item quantity="other">%d reseñas</item>
+  </plurals>
+  <string name="nd_panel_reviews_hint">Pulsa OK para abrir la reseña completa</string>
+  <string name="nd_reviews_loading">Cargando reseñas…</string>
+  <string name="nd_reviews_empty">Todavía no hay reseñas.</string>
+  <string name="nd_review_score">%1$d/10</string>
+  <string name="nd_review_source_tmdb">TMDB</string>
+  <string name="nd_panel_seasons_episodes">%1$s · %2$d episodios</string>
+  <string name="nd_panel_season">Temporada %1$d</string>
+  <string name="nd_panel_specials">Especiales</string>
+  <plurals name="nd_panel_episodes_count">
+    <item quantity="one">%d episodio</item>
+    <item quantity="other">%d episodios</item>
+  </plurals>
+  <string name="nd_panel_hold_hint">Mantén pulsado OK sobre un episodio para ver más opciones</string>
+  <string name="nd_panel_episode_tag">E%1$02d</string>
+  <string name="nd_panel_minutes">%1$d min</string>
+  <string name="nd_hold_play">Reproducir</string>
+  <string name="nd_hold_liked">Me gusta</string>
+  <string name="nd_hold_loved">Me encanta</string>
+  <string name="nd_hold_not_for_me">No es para mí</string>
+  <string name="nd_hold_reviews">Reseñas</string>
+  <string name="nd_episode_reviews_title">Reseñas · E%1$02d %2$s</string>
+  <string name="nd_episode_reviews_back">Atrás para volver</string>
+  <string name="nd_episode_reviews_empty">Todavía no hay reseñas de este episodio. Las reseñas de episodios proceden de Trakt y se muestran cuando has iniciado sesión en Trakt.</string>
+  <string name="nd_panel_cast_crew">Reparto y equipo</string>
+  <string name="nd_panel_cast">Reparto</string>
+  <string name="nd_panel_crew">Equipo</string>
+  <string name="nd_panel_network">Cadena</string>
+  <string name="nd_panel_production">Producción</string>
+  <string name="nd_panel_cast_counts">%1$d del reparto · %2$d del equipo</string>
+  <string name="nd_panel_no_cast">No hay información del reparto.</string>
+  <string name="nd_remind_me">Recuérdamelo</string>
+  <string name="nd_reminder_on">Recordatorio activado</string>
+  <string name="nd_coming">Se estrena %1$s</string>
+  <string name="nd_episode_code">T%1$d E%2$d</string>
+  <string name="nd_reminder_movie_text">%1$s ya está disponible. Nos pediste que te avisáramos.</string>
+  <string name="nd_panel_trailers">Tráilers</string>
+  <plurals name="nd_panel_videos_count">
+    <item quantity="one">%d vídeo</item>
+    <item quantity="other">%d vídeos</item>
+  </plurals>
+  <string name="nd_trailer_untitled">Tráiler</string>
+</resources>

@@ -1031,14 +1031,14 @@ internal fun NewLookHomeContent(
                                 focusedCard = null
                             }
                         },
-                        onWatchNow = { heroItem?.let { onWatchNow(it.id, it.apiType, "") } },
+                        onWatchNow = { heroItem?.let { onWatchNow(it.id, it.apiType, it.sourceAddonBaseUrl.orEmpty()) } },
                         onWatchNowLongClick = {
                             heroItem?.let { item ->
                                 val backdrop = item.backdropUrl ?: slides.getOrNull(slide)?.backdrop
                                 if (!backdrop.isNullOrBlank()) onSaveHomeTheme(item.name, backdrop)
                             }
                         },
-                        onMoreInfo = { heroItem?.let { onNavigateToDetail(it.id, it.apiType, "") } },
+                        onMoreInfo = { heroItem?.let { onNavigateToDetail(it.id, it.apiType, it.sourceAddonBaseUrl.orEmpty()) } },
                         topBar = if (menuOnTop && chrome != null) {
                             { modifier -> chrome.TopBar(onDown = { focusHero(heroButton) }, modifier = modifier) }
                         } else null,

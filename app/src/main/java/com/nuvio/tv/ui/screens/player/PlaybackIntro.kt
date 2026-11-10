@@ -71,9 +71,9 @@ fun PlaybackIntroHost() {
     // SurfaceView only gets its surface once it's drawn, and inside Compose (AndroidView) it
     // sometimes never was, leaving the intro black and stuck.
     val hostView = LocalView.current
-    DisposableEffect(Unit) {
+    DisposableEffect(hostView, timeline, betaSettings.mutePlaybackIntroSound) {
         val content = hostView.rootView.findViewById<ViewGroup>(android.R.id.content)
-        val intro = IntroSurfaceView(hostView.context, timeline) { PlaybackIntroState.finish() }
+        val intro = IntroSurfaceView(hostView.context, timeline, betaSettings.mutePlaybackIntroSound) { PlaybackIntroState.finish() }
         content?.addView(intro, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
         onDispose { content?.removeView(intro) }
     }
@@ -95,6 +95,7 @@ private const val ECHO_GAP = 0.12f
 private class IntroSurfaceView(
     context: Context,
     private val timeline: IntroTimeline,
+    private val muteSound: Boolean,
     private val onFinished: () -> Unit
 ) : SurfaceView(context), SurfaceHolder.Callback {
 
@@ -161,7 +162,7 @@ private class IntroSurfaceView(
         // Made on the render thread, its "finished" event went to a thread that had already
         // quit, so the player was never released.
         Thread({
-            val player = createSound()
+            val player = if (muteSound) null else createSound()
             val posted = handler.post {
                 if (detached) {
                     player?.release()

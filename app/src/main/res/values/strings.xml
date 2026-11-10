@@ -771,6 +771,8 @@
     <string name="audio_skip_silence_sub">Skip silent portions of audio during playback</string>
     <string name="audio_remember_delay_per_device">Remember audio delay per device</string>
     <string name="audio_remember_delay_per_device_sub">Save and restore the in-player audio delay for the current audio output route</string>
+    <string name="audio_mute_playback_intro">Mute player intro animation</string>
+    <string name="audio_mute_playback_intro_sub">Keeps the intro animation visible but mutes its soundtrack</string>
     <string name="audio_advanced_section">Advanced Audio</string>
     <string name="audio_advanced_warning">These settings may cause issues on some devices. Change only if you know what you\'re doing.</string>
     <string name="audio_number_of_channels">Number of channels</string>
@@ -1780,6 +1782,7 @@
     <string name="player_error_title">Playback Error</string>
     <string name="player_go_back">Go Back</string>
     <string name="player_switch_to_mpv">Switch to MPV Player</string>
+    <string name="player_btn_restart">Restart from beginning</string>
     <string name="player_report_issue">Report Issue</string>
     <string name="player_report_issue_sending">Sending playback report...</string>
     <string name="player_report_issue_sending_button">Sending...</string>

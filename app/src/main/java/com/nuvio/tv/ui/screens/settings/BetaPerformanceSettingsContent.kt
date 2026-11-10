@@ -100,6 +100,7 @@ class BetaPerformanceSettingsViewModel @Inject constructor(
     fun resetBlockedHighlights() = viewModelScope.launch { dataStore.resetBlockedHighlights() }
     fun setMinimalPlayer(enabled: Boolean) = viewModelScope.launch { dataStore.setMinimalPlayer(enabled) }
     fun setPlaybackIntro(enabled: Boolean) = viewModelScope.launch { dataStore.setPlaybackIntro(enabled) }
+    fun setMutePlaybackIntroSound(enabled: Boolean) = viewModelScope.launch { dataStore.setMutePlaybackIntroSound(enabled) }
     fun setSeekThumbnails(enabled: Boolean) = viewModelScope.launch { dataStore.setSeekThumbnails(enabled) }
     fun setSeekPreviewBudget(mb: Int) = viewModelScope.launch { dataStore.setSeekPreviewBudget(mb) }
     fun setSeekPreviewQuality(height: Int) = viewModelScope.launch { dataStore.setSeekPreviewQuality(height) }

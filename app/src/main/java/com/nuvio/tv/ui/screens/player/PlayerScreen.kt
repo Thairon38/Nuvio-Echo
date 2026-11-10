@@ -71,6 +71,7 @@ import androidx.compose.material.icons.filled.ClosedCaption
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Replay
 import androidx.compose.material.icons.filled.SkipNext
 import androidx.compose.material.icons.filled.Speed
 import androidx.compose.material.icons.filled.SwapHoriz
@@ -2581,6 +2582,16 @@ private fun PlayerControlsOverlay(
                         onDownKey = onHideControls,
                         onFocused = onResetHideTimer,
                         label = stringResource(if (uiState.isPlaying) R.string.player_btn_pause else R.string.player_btn_play)
+                    )
+
+                    ControlButton(
+                        icon = Icons.Default.Replay,
+                        contentDescription = stringResource(R.string.player_btn_restart),
+                        onClick = { onSeekTo(0L) },
+                        upFocusRequester = progressUpTarget,
+                        onDownKey = onHideControls,
+                        onFocused = onResetHideTimer,
+                        label = stringResource(R.string.player_btn_restart)
                     )
 
                     // Audio and Quality are one button, and the main row is Play/Pause, Next episode,

@@ -80,6 +80,8 @@ data class BetaPerformanceSettings(
     val minimalPlayer: Boolean = true,
     /** Play the short logo intro while a stream loads; playback waits for it to finish. */
     val playbackIntro: Boolean = true,
+    /** Mute only the soundtrack of the playback intro animation. */
+    val mutePlaybackIntroSound: Boolean = false,
     /** How long the intro runs, in seconds: one of [INTRO_LENGTHS]. */
     val introLengthSeconds: Int = 5,
     /** While scrubbing, show a picture of the spot above the progress bar (MKV and MP4 streams). */
@@ -251,6 +253,7 @@ class BetaPerformanceSettingsDataStore @Inject constructor(
     private val trailerQualityKey = intPreferencesKey("trailer_quality")
     private val minimalPlayerKey = booleanPreferencesKey("minimal_player")
     private val playbackIntroKey = booleanPreferencesKey("playback_intro")
+    private val mutePlaybackIntroSoundKey = booleanPreferencesKey("mute_playback_intro_sound")
     private val introLengthKey = intPreferencesKey("intro_length_seconds")
     private val seekThumbnailsKey = booleanPreferencesKey("seek_thumbnails")
     private val seekPreviewBudgetKey = intPreferencesKey("seek_preview_budget_mb")
@@ -318,6 +321,7 @@ class BetaPerformanceSettingsDataStore @Inject constructor(
                 ?: defaults.trailerQuality,
             minimalPlayer = prefs[minimalPlayerKey] ?: defaults.minimalPlayer,
             playbackIntro = prefs[playbackIntroKey] ?: defaults.playbackIntro,
+            mutePlaybackIntroSound = prefs[mutePlaybackIntroSoundKey] ?: defaults.mutePlaybackIntroSound,
             introLengthSeconds = prefs[introLengthKey]
                 ?.takeIf { it in BetaPerformanceSettings.INTRO_LENGTHS } ?: defaults.introLengthSeconds,
             seekThumbnails = prefs[seekThumbnailsKey] ?: defaults.seekThumbnails,
@@ -416,6 +420,7 @@ class BetaPerformanceSettingsDataStore @Inject constructor(
     suspend fun setTrailerVideoLayer(enabled: Boolean) = set(trailerVideoLayerKey, enabled)
     suspend fun setMinimalPlayer(enabled: Boolean) = set(minimalPlayerKey, enabled)
     suspend fun setPlaybackIntro(enabled: Boolean) = set(playbackIntroKey, enabled)
+    suspend fun setMutePlaybackIntroSound(enabled: Boolean) = set(mutePlaybackIntroSoundKey, enabled)
     suspend fun setSeekThumbnails(enabled: Boolean) = set(seekThumbnailsKey, enabled)
     suspend fun setSeekPreviewBudget(mb: Int) {
         if (mb !in BetaPerformanceSettings.SEEK_PREVIEW_BUDGETS) return

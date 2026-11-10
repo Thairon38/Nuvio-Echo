@@ -30,6 +30,8 @@ internal fun PlaybackSettingsSections(
     playerSettings: PlayerSettings,
     p2p: P2pSettingsUi,
     transparentLetterbox: Boolean,
+    mutePlaybackIntroSound: Boolean,
+    onMutePlaybackIntroSoundChange: (Boolean) -> Unit,
     onUpdate: PlaybackSettingsUpdate,
     onOpenDialog: (PlaybackDialog) -> Unit,
     onMemorySettingChanged: () -> Unit,
@@ -69,6 +71,8 @@ internal fun PlaybackSettingsSections(
                         playerSettings = playerSettings,
                         p2p = p2p,
                         transparentLetterbox = transparentLetterbox,
+                        mutePlaybackIntroSound = mutePlaybackIntroSound,
+                        onMutePlaybackIntroSoundChange = onMutePlaybackIntroSoundChange,
                         onUpdate = onUpdate,
                         onOpenDialog = onOpenDialog,
                         onMemorySettingChanged = onMemorySettingChanged,
@@ -87,6 +91,8 @@ private fun PlaybackSectionContent(
     playerSettings: PlayerSettings,
     p2p: P2pSettingsUi,
     transparentLetterbox: Boolean,
+    mutePlaybackIntroSound: Boolean,
+    onMutePlaybackIntroSoundChange: (Boolean) -> Unit,
     onUpdate: PlaybackSettingsUpdate,
     onOpenDialog: (PlaybackDialog) -> Unit,
     onMemorySettingChanged: () -> Unit,
@@ -98,7 +104,7 @@ private fun PlaybackSectionContent(
         PlaybackSection.UP_NEXT -> PlaybackUpNextSection(playerSettings, onUpdate, onOpenDialog)
         PlaybackSection.SKIP_SEGMENTS -> PlaybackSkipSegmentsSection(playerSettings, onUpdate)
         PlaybackSection.PLAYER_INTERFACE -> PlaybackPlayerInterfaceSection(playerSettings, onUpdate)
-        PlaybackSection.AUDIO -> PlaybackAudioSection(playerSettings, onUpdate, onOpenDialog)
+        PlaybackSection.AUDIO -> PlaybackAudioSection(playerSettings, mutePlaybackIntroSound, onMutePlaybackIntroSoundChange, onUpdate, onOpenDialog)
         PlaybackSection.SUBTITLES -> PlaybackSubtitlesSection(playerSettings, onUpdate, onOpenDialog)
         PlaybackSection.VIDEO -> PlaybackVideoSection(playerSettings, transparentLetterbox, onUpdate, onOpenDialog)
         PlaybackSection.BUFFER_NETWORK -> PlaybackBufferNetworkSection(playerSettings, onUpdate, onMemorySettingChanged)

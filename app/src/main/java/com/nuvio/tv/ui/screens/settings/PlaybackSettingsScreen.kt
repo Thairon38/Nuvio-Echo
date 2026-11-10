@@ -51,6 +51,8 @@ fun PlaybackSettingsContent(
     initialFocusRequester: FocusRequester? = null
 ) {
     val playerSettings by viewModel.playerSettings.collectAsStateWithLifecycle(initialValue = PlayerSettings())
+    val betaViewModel: BetaPerformanceSettingsViewModel = hiltViewModel()
+    val betaSettings by betaViewModel.settings.collectAsStateWithLifecycle()
     val transparentLetterbox by viewModel.transparentLetterbox.collectAsStateWithLifecycle(initialValue = false)
     val torrentSettings by viewModel.torrentSettingsFlow.collectAsStateWithLifecycle(initialValue = TorrentSettingsData())
     val torrentCacheState by viewModel.torrentCacheState.collectAsStateWithLifecycle()
@@ -108,6 +110,8 @@ fun PlaybackSettingsContent(
                 playerSettings = playerSettings,
                 p2p = p2p,
                 transparentLetterbox = transparentLetterbox,
+              mutePlaybackIntroSound = betaSettings.mutePlaybackIntroSound,
+              onMutePlaybackIntroSoundChange = betaViewModel::setMutePlaybackIntroSound,
                 onUpdate = onUpdate,
                 onOpenDialog = { openDialog = it },
                 onMemorySettingChanged = { memoryUsageTrigger++ },

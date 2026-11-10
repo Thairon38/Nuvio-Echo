@@ -14,6 +14,8 @@ import com.nuvio.tv.data.local.displayName
 @Composable
 internal fun PlaybackAudioSection(
     settings: PlayerSettings,
+    mutePlaybackIntroSound: Boolean,
+    onMutePlaybackIntroSoundChange: (Boolean) -> Unit,
     onUpdate: PlaybackSettingsUpdate,
     onOpenDialog: (PlaybackDialog) -> Unit
 ) {
@@ -21,6 +23,12 @@ internal fun PlaybackAudioSection(
     val isExoEngine = settings.usesExoPlayerEngine
 
     SettingsNote(text = stringResource(R.string.audio_passthrough_info))
+    SettingsToggleRow(
+        title = stringResource(R.string.audio_mute_playback_intro),
+        subtitle = stringResource(R.string.audio_mute_playback_intro_sub),
+        checked = mutePlaybackIntroSound,
+        onToggle = { onMutePlaybackIntroSoundChange(!mutePlaybackIntroSound) }
+    )
 
     SettingsActionRow(
         title = stringResource(R.string.audio_preferred_lang),
